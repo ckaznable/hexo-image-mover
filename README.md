@@ -15,3 +15,7 @@ and run this commend
 ```shell
 go run <hexo project root path>
 ```
+
+## LICENSE
+
+MIT
