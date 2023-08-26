@@ -73,7 +73,8 @@ func worker(taskCh <-chan string, wg *sync.WaitGroup) {
 
 func process(path string) {
 	filename := filepath.Base(path)
-	dirPath := filepath.Join(filepath.Dir(path), strings.Replace(filename, filepath.Ext(path), "", -1))
+	postname := strings.Replace(filename, filepath.Ext(path), "", -1)
+	dirPath := filepath.Join(filepath.Dir(path), postname)
 
 	content, err := getFileContent(path)
 	if err != nil {
@@ -92,7 +93,7 @@ func process(path string) {
 		target := filepath.Join(dirPath, filepath.Base(url))
 		err := downloadImage(url, target)
 		if err == nil {
-			content = strings.ReplaceAll(content, fmt.Sprintf("](%s)", url), fmt.Sprintf("](./%s)", filepath.Base(url)))
+			content = strings.ReplaceAll(content, fmt.Sprintf("](%s)", url), fmt.Sprintf("](./%s/%s)", postname, filepath.Base(url)))
 		}
 	}
 
