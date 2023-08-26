@@ -92,7 +92,7 @@ func process(path string) {
 		target := filepath.Join(dirPath, filepath.Base(url))
 		err := downloadImage(url, target)
 		if err == nil {
-			content = strings.ReplaceAll(content, fmt.Sprintf("](./%s)", url), fmt.Sprintf("](%s)", filepath.Base(url)))
+			content = strings.ReplaceAll(content, fmt.Sprintf("](%s)", url), fmt.Sprintf("](./%s)", filepath.Base(url)))
 		}
 	}
 
